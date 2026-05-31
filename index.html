@@ -1,0 +1,3195 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="JS Software - Agencia digital en Colombia. Desarrollo web, e-commerce con Shopify, aplicaciones web, landing pages y marketing digital con precios competitivos en pesos colombianos."
+    />
+    <title>JS Software · Agencia Digital Colombia</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================
+   VARIABLES & RESET
+============================================ */
+      :root {
+        --navy: #08142e;
+        --navy2: #0c1f4a;
+        --blue: #1a56db;
+        --blue2: #2563eb;
+        --accent: #3b82f6;
+        --sky: #60a5fa;
+        --light: #e8f0fe;
+        --white: #ffffff;
+        --off: #f5f7ff;
+        --text: #111827;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --success: #10b981;
+        --gold: #f59e0b;
+        --r: 14px;
+        --r-sm: 8px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--white);
+        color: var(--text);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* ============================================
+   SVG ICON SYSTEM
+============================================ */
+      .icon {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        vertical-align: middle;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+      }
+
+      .icon-sm { width: 16px; height: 16px; }
+      .icon-md { width: 24px; height: 24px; }
+      .icon-lg { width: 28px; height: 28px; }
+      .icon-xl { width: 32px; height: 32px; }
+
+      .icon-filled { fill: currentColor; stroke: none; }
+
+      /* ============================================
+   NAVBAR
+============================================ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(8, 20, 46, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .nav-mark {
+        width: 38px;
+        height: 38px;
+        background: var(--blue);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 14px;
+        color: #fff;
+        letter-spacing: -0.5px;
+        flex-shrink: 0;
+      }
+
+      .nav-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        color: #fff;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.65);
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: all 0.2s;
+        font-weight: 400;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .nav-cta {
+        background: var(--blue) !important;
+        color: #fff !important;
+        font-weight: 500 !important;
+        padding: 8px 18px !important;
+      }
+
+      .nav-cta:hover {
+        background: var(--blue2) !important;
+      }
+
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .nav-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+      .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.active span:nth-child(2) { opacity: 0; }
+      .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      /* ============================================
+   HERO
+============================================ */
+      #hero {
+        min-height: 100vh;
+        background: var(--navy);
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        padding: 100px 24px 60px;
+      }
+
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(59, 130, 246, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(59, 130, 246, 0.07) 1px, transparent 1px);
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 40%,
+          transparent 100%
+        );
+      }
+
+      .hero-glow1 {
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(26, 86, 219, 0.3) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+
+      .hero-glow2 {
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(59, 130, 246, 0.15) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: var(--sky);
+        font-size: 12px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 30px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      .hero-tag .icon { width: 22px; height: 15px; stroke: none; }
+
+      .hero-tag .pulse-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--sky);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.8);
+        }
+      }
+
+      .hero-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        margin-bottom: 20px;
+      }
+
+      .hero-title em {
+        font-style: normal;
+        background: linear-gradient(135deg, var(--sky) 0%, var(--blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-desc {
+        font-size: 16px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 36px;
+        max-width: 480px;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue);
+        color: #fff;
+        padding: 13px 26px;
+        border-radius: var(--r);
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background: var(--blue2);
+        transform: translateY(-2px);
+      }
+
+      .btn-primary .icon { width: 18px; height: 18px; }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.8);
+        padding: 13px 26px;
+        border-radius: var(--r);
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        text-decoration: none;
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.2s;
+      }
+
+      .btn-outline:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        color: #fff;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 44px;
+      }
+
+      .stat {}
+      .stat-num {
+        font-family: "Syne", sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        color: #fff;
+        display: block;
+        line-height: 1;
+      }
+
+      .stat-num span {
+        color: var(--sky);
+      }
+      .stat-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.5px;
+      }
+
+      /* Hero visual */
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 32px;
+        backdrop-filter: blur(10px);
+        width: 100%;
+        max-width: 380px;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      .hero-code {
+        font-family: "DM Mono", monospace;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.8;
+      }
+
+      .c-blue { color: #60a5fa; }
+      .c-green { color: #86efac; }
+      .c-yellow { color: #fde68a; }
+      .c-pink { color: #f9a8d4; }
+      .c-muted { color: rgba(255, 255, 255, 0.35); }
+
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .hbadge {
+        font-size: 11px;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hbadge.active {
+        background: rgba(59, 130, 246, 0.2);
+        color: var(--sky);
+        border-color: rgba(59, 130, 246, 0.3);
+      }
+
+      /* ============================================
+   SECTIONS COMMON
+============================================ */
+      section {
+        padding: 90px 24px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--blue);
+        background: var(--light);
+        padding: 5px 14px;
+        border-radius: 30px;
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-family: "Syne", sans-serif;
+        font-size: clamp(28px, 4vw, 46px);
+        font-weight: 800;
+        color: var(--navy);
+        line-height: 1.12;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+      }
+
+      .section-title em {
+        font-style: normal;
+        color: var(--blue);
+      }
+
+      .section-desc {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 580px;
+      }
+
+      /* ============================================
+   QUIENES SOMOS
+============================================ */
+      #nosotros {
+        background: var(--off);
+      }
+
+      .nosotros-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        margin-top: 48px;
+      }
+
+      .nosotros-visual {
+        position: relative;
+      }
+
+      .ns-main-card {
+        background: var(--navy);
+        border-radius: 20px;
+        padding: 36px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ns-main-card::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle,
+          rgba(59, 130, 246, 0.3) 0%,
+          transparent 70%
+        );
+      }
+
+      .ns-logo-big {
+        width: 72px;
+        height: 72px;
+        background: var(--blue);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .ns-card-title {
+        font-family: "Syne", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      .ns-card-text {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.7;
+      }
+
+      .ns-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.25);
+        color: var(--sky);
+        font-size: 12px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        margin-top: 20px;
+      }
+
+      .ns-pill .icon { width: 18px; height: 13px; stroke: none; }
+
+      .ns-float {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .ns-float-icon {
+        font-size: 22px;
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ns-float-icon .icon { width: 24px; height: 24px; }
+      .ns-float-txt {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .ns-float-num {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--navy);
+      }
+
+      .nosotros-content {}
+
+      .valores-list {
+        list-style: none;
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .valor-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        transition: all 0.2s;
+      }
+
+      .valor-item:hover {
+        border-color: var(--accent);
+        box-shadow: 0 4px 20px rgba(26, 86, 219, 0.08);
+      }
+
+      .valor-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--light);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        flex-shrink: 0;
+        transition: all 0.25s;
+      }
+
+      .valor-item:hover .valor-icon {
+        background: var(--blue);
+        color: #fff;
+        transform: scale(1.08);
+      }
+
+      .valor-icon .icon { width: 20px; height: 20px; }
+
+      .valor-title {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .valor-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* ============================================
+   MISION VISION
+============================================ */
+      #mision {
+        background: var(--navy);
+        padding: 80px 24px;
+      }
+
+      .mv-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        margin-top: 48px;
+      }
+
+      .mv-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 36px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+
+      .mv-card:hover {
+        border-color: rgba(59, 130, 246, 0.4);
+      }
+
+      .mv-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), var(--sky));
+      }
+
+      .mv-icon-wrap {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba(59, 130, 246, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sky);
+        margin-bottom: 16px;
+        transition: all 0.25s;
+      }
+
+      .mv-card:hover .mv-icon-wrap {
+        background: var(--blue);
+        color: #fff;
+        transform: scale(1.08) rotate(-3deg);
+      }
+
+      .mv-icon-wrap .icon { width: 26px; height: 26px; }
+
+      .mv-title {
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 12px;
+      }
+
+      .mv-text {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.7;
+      }
+
+      /* ============================================
+   SERVICIOS
+============================================ */
+      #servicios {
+        background: var(--white);
+      }
+
+      .servicios-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+      }
+
+      .servicio-card {
+        background: var(--off);
+        border: 1.5px solid var(--border);
+        border-radius: 18px;
+        padding: 28px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .servicio-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), var(--sky));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+
+      .servicio-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(26, 86, 219, 0.12);
+      }
+
+      .servicio-card:hover::after {
+        transform: scaleX(1);
+      }
+
+      .sv-icon {
+        width: 52px;
+        height: 52px;
+        background: var(--light);
+        border-radius: var(--r);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        margin-bottom: 18px;
+        transition: all 0.25s;
+      }
+
+      .servicio-card:hover .sv-icon {
+        background: var(--blue);
+        color: #fff;
+        transform: scale(1.08) rotate(-3deg);
+      }
+
+      .sv-icon .icon { width: 26px; height: 26px; }
+
+      .sv-title {
+        font-family: "Syne", sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+
+      .sv-desc {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .sv-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .sv-list li {
+        font-size: 12.5px;
+        color: var(--muted);
+        padding-left: 16px;
+        position: relative;
+      }
+
+      .sv-list li::before {
+        content: "\2192";
+        position: absolute;
+        left: 0;
+        color: var(--blue);
+        font-size: 11px;
+      }
+
+      /* ============================================
+   TIPOS DE PAGINAS
+============================================ */
+      #tipos {
+        background: var(--off);
+      }
+
+      .tipos-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        margin-top: 48px;
+      }
+
+      .tipo-card {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: var(--r);
+        padding: 22px;
+        text-align: center;
+        transition: all 0.22s;
+      }
+
+      .tipo-card:hover {
+        border-color: var(--blue);
+        box-shadow: 0 8px 28px rgba(26, 86, 219, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .tipo-icon-wrap {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: var(--light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        margin: 0 auto 12px;
+        transition: all 0.25s;
+      }
+
+      .tipo-card:hover .tipo-icon-wrap {
+        background: var(--blue);
+        color: #fff;
+        transform: scale(1.1) rotate(-5deg);
+      }
+
+      .tipo-icon-wrap .icon { width: 24px; height: 24px; }
+
+      .tipo-title {
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+      .tipo-desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      /* ============================================
+   ADICIONALES
+============================================ */
+      #adicionales {
+        background: var(--white);
+      }
+
+      .adicionales-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 48px;
+      }
+
+      .adicional-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        background: var(--off);
+        transition: all 0.2s;
+      }
+
+      .adicional-item:hover {
+        border-color: var(--accent);
+        background: var(--light);
+      }
+
+      .ad-icon-wrap {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: var(--light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        flex-shrink: 0;
+        transition: all 0.25s;
+      }
+
+      .adicional-item:hover .ad-icon-wrap {
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .ad-icon-wrap .icon { width: 18px; height: 18px; }
+
+      .ad-title {
+        font-family: "Syne", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 3px;
+      }
+      .ad-desc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      /* ============================================
+   TARIFAS
+============================================ */
+      #tarifas {
+        background: var(--navy);
+      }
+
+      .tarifas-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .tarifas-header .section-title {
+        color: #fff;
+      }
+      .tarifas-header .section-desc {
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0 auto;
+      }
+
+      .currency-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        padding: 4px;
+        width: fit-content;
+        margin: 24px auto 0;
+      }
+
+      .cur-btn {
+        padding: 8px 22px;
+        border-radius: 24px;
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        color: rgba(255, 255, 255, 0.5);
+        background: transparent;
+      }
+
+      .cur-btn.active {
+        background: var(--blue);
+        color: #fff;
+      }
+
+      .tarifas-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .tarifa-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1.5px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 32px 28px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.25s;
+      }
+
+      .tarifa-card:hover {
+        border-color: rgba(59, 130, 246, 0.5);
+        transform: translateY(-4px);
+      }
+
+      .tarifa-card.featured {
+        background: var(--blue);
+        border-color: var(--blue2);
+      }
+
+      .t-popular-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        text-transform: uppercase;
+      }
+
+      .t-popular-badge .icon { width: 12px; height: 12px; fill: currentColor; stroke: none; }
+
+      .t-category {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--sky);
+        margin-bottom: 8px;
+      }
+
+      .tarifa-card.featured .t-category {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .t-name {
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .t-price {
+        margin-bottom: 8px;
+      }
+
+      .t-price .amount {
+        font-family: "Syne", sans-serif;
+        font-size: 36px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1;
+      }
+
+      .t-price .currency {
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        vertical-align: super;
+        margin-right: 2px;
+      }
+
+      .t-price-note {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 24px;
+      }
+
+      .t-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .t-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .t-features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .t-features li .icon-check {
+        width: 16px;
+        height: 16px;
+        color: var(--success);
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+
+      .tarifa-card.featured .t-features li {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .btn-tarifa {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        border-radius: var(--r);
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+
+      .btn-tarifa:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .tarifa-card.featured .btn-tarifa {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .tarifa-card.featured .btn-tarifa:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .tarifas-note {
+        text-align: center;
+        margin-top: 36px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .tarifas-note .icon { width: 16px; height: 16px; }
+
+      /* ============================================
+   FORMULARIO
+============================================ */
+      #contacto {
+        background: var(--off);
+      }
+
+      .contacto-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 60px;
+        align-items: start;
+        margin-top: 48px;
+      }
+
+      .contacto-info {}
+
+      .info-block {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 20px;
+        margin-bottom: 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        transition: all 0.2s;
+      }
+
+      .info-block:hover {
+        border-color: var(--accent);
+      }
+
+      .ib-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .ib-icon .icon { width: 20px; height: 20px; }
+
+      .ib-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 3px;
+      }
+      .ib-value {
+        font-family: "Syne", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .ib-value a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      .redes-title {
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--navy);
+        margin: 24px 0 12px;
+      }
+
+      .redes-btns {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .red-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: var(--r);
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s;
+        font-family: "Syne", sans-serif;
+      }
+
+      .red-wa {
+        background: #25d366;
+        color: #fff;
+      }
+      .red-wa:hover {
+        background: #1da851;
+        transform: translateY(-2px);
+      }
+      .red-ig {
+        background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        color: #fff;
+      }
+      .red-ig:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+      }
+
+      /* FORM */
+      .form-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 36px;
+      }
+
+      .form-title-inner {
+        font-family: "Syne", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .form-title-inner .icon { width: 22px; height: 22px; color: var(--blue); }
+
+      .form-sub-inner {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .fgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .ffield {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .ffield label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+        letter-spacing: 0.2px;
+      }
+      .ffield label .req {
+        color: var(--blue);
+      }
+      .ffield input,
+      .ffield select,
+      .ffield textarea {
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        background: var(--off);
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-sm);
+        padding: 10px 14px;
+        width: 100%;
+        outline: none;
+        transition: all 0.2s;
+      }
+      .ffield input:focus,
+      .ffield select:focus,
+      .ffield textarea:focus {
+        border-color: var(--blue);
+        background: #fff;
+      }
+      .ffield textarea {
+        resize: vertical;
+        min-height: 90px;
+        line-height: 1.5;
+      }
+      .ffield select {
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 36px;
+        -webkit-appearance: none;
+      }
+
+      .check-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 4px;
+      }
+
+      .fcheck {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border: 1.5px solid var(--border);
+        border-radius: var(--r-sm);
+        cursor: pointer;
+        transition: all 0.15s;
+        font-size: 13px;
+        color: var(--text);
+        user-select: none;
+        background: var(--off);
+      }
+
+      .fcheck:hover {
+        border-color: var(--accent);
+        background: var(--light);
+      }
+      .fcheck.sel {
+        border-color: var(--blue);
+        background: var(--light);
+        color: var(--navy);
+        font-weight: 500;
+      }
+
+      .fcheck-box {
+        width: 16px;
+        height: 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 4px;
+        flex-shrink: 0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+      }
+
+      .fcheck.sel .fcheck-box {
+        background: var(--blue);
+        border-color: var(--blue);
+      }
+      .fcheck.sel .fcheck-box::after {
+        content: "";
+        width: 4px;
+        height: 8px;
+        border: 2px solid #fff;
+        border-top: none;
+        border-left: none;
+        transform: rotate(45deg) translateY(-1px);
+      }
+
+      .fcheck .icon { width: 16px; height: 16px; color: var(--blue); flex-shrink: 0; }
+
+      .btn-form {
+        width: 100%;
+        padding: 14px;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        border-radius: var(--r);
+        font-family: "Syne", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn-form:hover {
+        background: var(--blue2);
+        transform: translateY(-1px);
+      }
+
+      .btn-form .icon { width: 18px; height: 18px; }
+
+      .form-success {
+        display: none;
+        background: #ecfdf5;
+        border: 1.5px solid #a7f3d0;
+        border-radius: var(--r);
+        padding: 18px;
+        text-align: center;
+        margin-top: 16px;
+        font-size: 14px;
+        color: #065f46;
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+      }
+
+      .form-success .icon { width: 18px; height: 18px; color: var(--success); }
+
+      .form-success.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        animation: fadeIn 0.4s ease;
+      }
+
+      /* ============================================
+   FOOTER
+============================================ */
+      footer {
+        background: var(--navy);
+        padding: 48px 24px 28px;
+      }
+
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-brand {}
+      .fb-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .fb-mark {
+        width: 40px;
+        height: 40px;
+        background: var(--blue);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 15px;
+        color: #fff;
+      }
+
+      .fb-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        color: #fff;
+      }
+
+      .fb-desc {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.6;
+        max-width: 240px;
+      }
+
+      .footer-col-title {
+        font-family: "Syne", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .footer-copy {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .footer-copy .icon { width: 16px; height: 11px; stroke: none; }
+
+      .footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .f-social-btn {
+        width: 34px;
+        height: 34px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: background 0.2s;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .f-social-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+
+      .f-social-btn .icon { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+
+      /* ============================================
+   FLOATING BUTTONS
+============================================ */
+      .float-btns {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 900;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .float-btn {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s;
+        color: #fff;
+      }
+
+      .float-btn:hover {
+        transform: scale(1.1);
+      }
+      .fwa {
+        background: #25d366;
+      }
+      .fig {
+        background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366);
+      }
+
+      .float-btn .icon { width: 24px; height: 24px; fill: currentColor; stroke: none; }
+
+      /* ============================================
+   ANIMATIONS
+============================================ */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ============================================
+   RESPONSIVE
+============================================ */
+      @media (max-width: 1024px) {
+        .servicios-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .check-row {
+          grid-template-columns: 1fr;
+        }
+        .tipos-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .tarifas-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 28px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--navy);
+          padding: 20px 24px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          gap: 8px;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+          backdrop-filter: blur(20px);
+          animation: fadeIn 0.3s ease-out;
+        }
+        .nav-links.open a {
+          padding: 10px;
+          width: 100%;
+          text-align: center;
+          font-size: 15px;
+        }
+        .nav-links.open .nav-cta {
+          margin-top: 10px;
+        }
+        .hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-desc {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero-btns {
+          justify-content: center;
+        }
+        .hero-stats {
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 30px;
+        }
+        .hero-visual {
+          display: none;
+        }
+        .section-tag, .section-title, .section-desc {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .nosotros-grid {
+          grid-template-columns: 1fr;
+        }
+        .mv-grid {
+          grid-template-columns: 1fr;
+        }
+        .servicios-grid {
+          grid-template-columns: 1fr;
+        }
+        .adicionales-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .tarifas-grid {
+          grid-template-columns: 1fr;
+        }
+        .contacto-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+        .fb-desc { margin: 0 auto 16px; }
+        .fgrid {
+          grid-template-columns: 1fr;
+        }
+        .hero-stats {
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .tipos-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .adicionales-grid {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 60px 20px;
+        }
+        .section-title { font-size: 32px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SVG SPRITE SHEET -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <!-- Colombian Flag -->
+      <symbol id="i-flag-co" viewBox="0 0 22 16">
+        <rect width="22" height="8" fill="#FCD116" rx="2"/>
+        <rect y="8" width="22" height="4" fill="#003893"/>
+        <rect y="12" width="22" height="4" fill="#CE1126"/>
+        <rect width="22" height="16" rx="2" fill="none" stroke="#000" stroke-opacity=".08"/>
+      </symbol>
+      <!-- Rocket -->
+      <symbol id="i-rocket" viewBox="0 0 24 24">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="m12 15-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 12H4s.55-3.03 2-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 15v5s3.03-.55 4.5-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Zap/Lightning -->
+      <symbol id="i-zap" viewBox="0 0 24 24">
+        <path d="m13 2-10 12h9l-1 8 10-12h-9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Target -->
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Users/Handshake -->
+      <symbol id="i-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M22 21v-2a4 4 0 00-3-3.87" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 3.13a4 4 0 010 7.75" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Lightbulb -->
+      <symbol id="i-lightbulb" viewBox="0 0 24 24">
+        <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 006 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 18h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M10 22h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Eye/Vision -->
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Diamond -->
+      <symbol id="i-diamond" viewBox="0 0 24 24">
+        <path d="M6 3h12l4 6-10 13L2 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 9h20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Globe -->
+      <symbol id="i-globe" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 2a14.5 14.5 0 000 20 14.5 14.5 0 000-20" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M2 12h20" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Shopping Cart -->
+      <symbol id="i-cart" viewBox="0 0 24 24">
+        <circle cx="8" cy="21" r="1" fill="currentColor" stroke="none"/>
+        <circle cx="19" cy="21" r="1" fill="currentColor" stroke="none"/>
+        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 002 1.58h9.78a2 2 0 001.95-1.57l1.65-7.43H5.12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Monitor/Web -->
+      <symbol id="i-monitor" viewBox="0 0 24 24">
+        <rect x="2" y="3" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 21h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 17v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Smartphone -->
+      <symbol id="i-smartphone" viewBox="0 0 24 24">
+        <rect x="5" y="2" width="14" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 18h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Refresh -->
+      <symbol id="i-refresh" viewBox="0 0 24 24">
+        <path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 3v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M21 12a9 9 0 01-9 9 9.75 9.75 0 01-6.74-2.74L3 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 21v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Bar Chart -->
+      <symbol id="i-chart" viewBox="0 0 24 24">
+        <path d="M12 20V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M18 20V4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 20v-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Megaphone -->
+      <symbol id="i-megaphone" viewBox="0 0 24 24">
+        <path d="m3 11 18-5v12L3 13v-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M11.6 16.8a3 3 0 11-5.8-1.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Building -->
+      <symbol id="i-building" viewBox="0 0 24 24">
+        <rect x="4" y="2" width="16" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M9 22v-4h6v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Shopping Bag -->
+      <symbol id="i-bag" viewBox="0 0 24 24">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 6h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M16 10a4 4 0 01-8 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Utensils -->
+      <symbol id="i-utensils" viewBox="0 0 24 24">
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 2v20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Health Plus -->
+      <symbol id="i-health" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 12h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 8v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Landmark/Real Estate -->
+      <symbol id="i-landmark" viewBox="0 0 24 24">
+        <path d="M3 22h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6 18v-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M10 18v-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 18v-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M18 18v-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 2 2 8h20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Graduation Cap -->
+      <symbol id="i-graduation" viewBox="0 0 24 24">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Briefcase -->
+      <symbol id="i-briefcase" viewBox="0 0 24 24">
+        <rect x="2" y="7" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M16 7V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Camera -->
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <path d="M14.5 4h-5L7 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2h-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="13" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Scale -->
+      <symbol id="i-scale" viewBox="0 0 24 24">
+        <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 21h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M12 3v18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Activity/Fitness -->
+      <symbol id="i-activity" viewBox="0 0 24 24">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Plane -->
+      <symbol id="i-plane" viewBox="0 0 24 24">
+        <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3s-3-.5-4.5 1L13 8l-8.2-1.8c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Message Circle/Chat -->
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M7.9 20A9 9 0 104 16.1L2 22z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Search -->
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m21 21-4.3-4.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Mail -->
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="2" y="4" width="20" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Palette -->
+      <symbol id="i-palette" viewBox="0 0 24 24">
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" stroke="none"/>
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" stroke="none"/>
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" stroke="none"/>
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Credit Card -->
+      <symbol id="i-creditcard" viewBox="0 0 24 24">
+        <rect x="1" y="4" width="22" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M1 10h22" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Lock/Shield -->
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M7 11V7a5 5 0 0110 0v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <!-- Map Pin -->
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Clock -->
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Clipboard -->
+      <symbol id="i-clipboard" viewBox="0 0 24 24">
+        <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="8" y="2" width="8" height="4" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <!-- Star -->
+      <symbol id="i-star" viewBox="0 0 24 24">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="currentColor" stroke="none"/>
+      </symbol>
+      <!-- Check -->
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Check Circle -->
+      <symbol id="i-check-circle" viewBox="0 0 24 24">
+        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 4L12 14.01l-3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- Arrow Right -->
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="m12 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <!-- WhatsApp -->
+      <symbol id="i-whatsapp" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </symbol>
+      <!-- Instagram -->
+      <symbol id="i-instagram" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+      </symbol>
+      <!-- Trending Up -->
+      <symbol id="i-trending" viewBox="0 0 24 24">
+        <path d="M23 6l-9.5 9.5-5-5L1 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M17 6h6v6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </svg>
+
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">
+          <div class="nav-mark">JS</div>
+          <span class="nav-name">Software</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#tipos">Paginas Web</a></li>
+          <li><a href="#tarifas">Tarifas</a></li>
+          <li><a href="#contacto" class="nav-cta">Cotizar gratis</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-glow1"></div>
+      <div class="hero-glow2"></div>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <svg class="icon"><use href="#i-flag-co"/></svg>
+            Agencia Digital &middot; Colombia
+          </div>
+          <h1 class="hero-title">
+            Construimos tu<br />
+            presencia <em>digital</em><br />
+            con impacto
+          </h1>
+          <p class="hero-desc">
+            En JS Software desarrollamos sitios web, e-commerce, aplicaciones,
+            landing pages y estrategias de marketing digital con tecnología de punta.
+            Precios en pesos colombianos, calidad internacional.
+          </p>
+          <div class="hero-btns">
+            <a href="#contacto" class="btn-primary">
+              <svg class="icon"><use href="#i-rocket"/></svg> Cotizar gratis
+            </a>
+            <a href="#servicios" class="btn-outline">Ver servicios <svg class="icon icon-sm" style="width:14px;height:14px"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">100<span>%</span></span>
+              <span class="stat-label">Compromiso</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">7<span>+</span></span>
+              <span class="stat-label">Servicios</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">COP</span>
+              <span class="stat-label">Precios locales</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-code">
+              <div>
+                <span class="c-pink">const</span>
+                <span class="c-blue">proyecto</span> = {
+              </div>
+              <div>
+                &nbsp;&nbsp;<span class="c-green">cliente</span>:
+                <span class="c-yellow">"Tu negocio"</span>,
+              </div>
+              <div>
+                &nbsp;&nbsp;<span class="c-green">tipo</span>:
+                <span class="c-yellow">"E-commerce"</span>,
+              </div>
+              <div>
+                &nbsp;&nbsp;<span class="c-green">tecnologia</span>:
+                <span class="c-yellow">"Shopify"</span>,
+              </div>
+              <div>
+                &nbsp;&nbsp;<span class="c-green">pais</span>:
+                <span class="c-yellow">"Colombia"</span>,
+              </div>
+              <div>
+                &nbsp;&nbsp;<span class="c-green">estado</span>:
+                <span class="c-blue">listo</span>()
+              </div>
+              <div>}</div>
+              <div>&nbsp;</div>
+              <div>
+                <span class="c-muted">// Tu proyecto empieza hoy!</span>
+              </div>
+            </div>
+            <div class="hero-badges">
+              <span class="hbadge active">Shopify</span>
+              <span class="hbadge active">React</span>
+              <span class="hbadge">WordPress</span>
+              <span class="hbadge active">Node.js</span>
+              <span class="hbadge">PHP</span>
+              <span class="hbadge active">Marketing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIENES SOMOS -->
+    <section id="nosotros">
+      <div class="container">
+        <div class="fade-in">
+          <span class="section-tag">Quiénes somos</span>
+          <h2 class="section-title">
+            Somos <em>JS Software</em>,<br />tu aliado digital
+          </h2>
+          <p class="section-desc">
+            Una agencia colombiana de desarrollo web, marketing digital y soluciones digitales,
+            comprometida con llevar tu negocio al siguiente nivel a precios
+            accesibles y competitivos.
+          </p>
+        </div>
+        <div class="nosotros-grid">
+          <div class="nosotros-visual fade-in">
+            <div class="ns-main-card">
+              <div class="ns-logo-big">JS</div>
+              <p class="ns-card-title">JS Software</p>
+              <p class="ns-card-text">
+                Nacemos con la misión de democratizar el acceso al desarrollo
+                web de calidad en Colombia. Creemos que toda empresa, sin
+                importar su tamaño, merece una presencia digital profesional.
+              </p>
+              <div class="ns-pill">
+                <svg class="icon"><use href="#i-flag-co"/></svg>
+                Agencia 100% colombiana
+              </div>
+            </div>
+            <div class="ns-float">
+              <div class="ns-float-icon">
+                <svg class="icon"><use href="#i-zap"/></svg>
+              </div>
+              <div>
+                <div class="ns-float-num">Precios COP</div>
+                <div class="ns-float-txt">Sin costos en dolares</div>
+              </div>
+            </div>
+          </div>
+          <div class="nosotros-content fade-in">
+            <ul class="valores-list">
+              <li class="valor-item">
+                <div class="valor-icon"><svg class="icon"><use href="#i-target"/></svg></div>
+                <div>
+                  <p class="valor-title">Enfocados en resultados</p>
+                  <p class="valor-desc">
+                    No solo entregamos codigo, entregamos soluciones que generan
+                    valor real para tu negocio y tus clientes.
+                  </p>
+                </div>
+              </li>
+              <li class="valor-item">
+                <div class="valor-icon"><svg class="icon"><use href="#i-users"/></svg></div>
+                <div>
+                  <p class="valor-title">Atención personalizada</p>
+                  <p class="valor-desc">
+                    Acompañamos cada proyecto desde la idea hasta el
+                    lanzamiento, con comunicación directa y transparente.
+                  </p>
+                </div>
+              </li>
+              <li class="valor-item">
+                <div class="valor-icon"><svg class="icon"><use href="#i-lightbulb"/></svg></div>
+                <div>
+                  <p class="valor-title">Innovación accesible</p>
+                  <p class="valor-desc">
+                    Tecnología de punta con precios pensados para el mercado
+                    colombiano. Calidad sin sacrificar el bolsillo.
+                  </p>
+                </div>
+              </li>
+              <li class="valor-item">
+                <div class="valor-icon"><svg class="icon"><use href="#i-rocket"/></svg></div>
+                <div>
+                  <p class="valor-title">Entrega ágil</p>
+                  <p class="valor-desc">
+                    Metodologías de trabajo eficientes que permiten ver
+                    resultados rápidos sin perder calidad.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISION Y VISION -->
+    <section id="mision">
+      <div class="container">
+        <div class="fade-in" style="text-align: center">
+          <span class="section-tag" style="background: rgba(59, 130, 246, 0.15); color: var(--sky)">Propósito</span>
+          <h2 class="section-title" style="color: #fff">
+            Lo que nos <em style="color: var(--sky)">mueve</em>
+          </h2>
+        </div>
+        <div class="mv-grid">
+          <div class="mv-card fade-in">
+            <div class="mv-icon-wrap"><svg class="icon"><use href="#i-target"/></svg></div>
+            <p class="mv-title">Nuestra Misión</p>
+            <p class="mv-text">
+              Brindar soluciones digitales de alta calidad a emprendedores,
+              pymes y empresas colombianas, con precios competitivos y atención
+              cercana, ayudándoles a crecer y consolidarse en el mundo digital
+              de forma efectiva.
+            </p>
+          </div>
+          <div class="mv-card fade-in">
+            <div class="mv-icon-wrap"><svg class="icon"><use href="#i-eye"/></svg></div>
+            <p class="mv-title">Nuestra Visión</p>
+            <p class="mv-text">
+              Convertirnos en la agencia de referencia en Colombia para el
+              desarrollo web y soluciones digitales, reconocida por la calidad
+              de nuestro trabajo, la transparencia en nuestros precios y el
+              impacto real que generamos en los negocios de nuestros clientes.
+            </p>
+          </div>
+          <div class="mv-card fade-in">
+            <div class="mv-icon-wrap"><svg class="icon"><use href="#i-diamond"/></svg></div>
+            <p class="mv-title">Nuestros Valores</p>
+            <p class="mv-text">
+              Transparencia, compromiso, innovación y calidad son los pilares
+              que guían cada proyecto. Trabajamos con honestidad y pasión porque
+              creemos que el éxito de nuestros clientes es nuestro propio éxito.
+            </p>
+          </div>
+          <div class="mv-card fade-in">
+            <div class="mv-icon-wrap"><svg class="icon"><use href="#i-globe"/></svg></div>
+            <p class="mv-title">¿Por qué elegirnos?</p>
+            <p class="mv-text">
+              Somos colombianos, hablamos tu idioma y entendemos tu mercado.
+              Nuestros precios estan en pesos, sin intermediarios ni costos
+              ocultos. Recibes calidad internacional con el respaldo de una
+              agencia local comprometida contigo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="container">
+        <div class="fade-in">
+          <span class="section-tag">Servicios</span>
+          <h2 class="section-title">
+            Todo lo que tu negocio<br />necesita en el <em>mundo digital</em>
+          </h2>
+          <p class="section-desc">
+            Ofrecemos una suite completa de servicios digitales para impulsar tu
+            presencia en linea.
+          </p>
+        </div>
+        <div class="servicios-grid">
+          <div class="servicio-card fade-in">
+            <div class="sv-icon"><svg class="icon"><use href="#i-cart"/></svg></div>
+            <p class="sv-title">E-commerce con Shopify</p>
+            <p class="sv-desc">
+              Crea tu tienda en linea y empieza a vender en todo Colombia y el
+              mundo. Configuramos tu Shopify completo y listo para vender.
+            </p>
+            <ul class="sv-list">
+              <li>Configuración completa de la tienda</li>
+              <li>Catálogo de productos ilimitado</li>
+              <li>Pasarelas de pago (PSE, tarjetas)</li>
+              <li>Integración con redes sociales</li>
+              <li>Gestión de inventario</li>
+              <li>Diseño personalizado de la tienda</li>
+            </ul>
+          </div>
+          <div class="servicio-card fade-in">
+            <div class="sv-icon"><svg class="icon"><use href="#i-monitor"/></svg></div>
+            <p class="sv-title">Paginas Web Profesionales</p>
+            <p class="sv-desc">
+              Sitios web a la medida, modernos, rápidos y optimizados para
+              Google. Tu negocio merece una presencia digital impecable.
+            </p>
+            <ul class="sv-list">
+              <li>Diseño 100% personalizado</li>
+              <li>Optimización SEO desde el inicio</li>
+              <li>Responsive para móviles y tablets</li>
+              <li>Panel de administración fácil de usar</li>
+              <li>Alta velocidad de carga</li>
+              <li>Certificado SSL incluido</li>
+            </ul>
+          </div>
+          <div class="servicio-card fade-in">
+            <div class="sv-icon"><svg class="icon"><use href="#i-smartphone"/></svg></div>
+            <p class="sv-title">Aplicaciones Web</p>
+            <p class="sv-desc">
+              Plataformas y aplicaciones personalizadas para automatizar
+              procesos, gestionar clientes o lanzar tu producto digital.
+            </p>
+            <ul class="sv-list">
+              <li>Desarrollo a medida (React / Node.js)</li>
+              <li>Paneles administrativos</li>
+              <li>Sistemas de reservas y agendamiento</li>
+              <li>Plataformas de membresías</li>
+              <li>Integración con APIs externas</li>
+              <li>Soporte post-lanzamiento</li>
+            </ul>
+          </div>
+          <div class="servicio-card fade-in">
+            <div class="sv-icon"><svg class="icon"><use href="#i-target"/></svg></div>
+            <p class="sv-title">Landing Pages</p>
+            <p class="sv-desc">
+              Páginas de aterrizaje diseñadas para convertir visitantes en
+              clientes. Perfectas para campañas publicitarias y lanzamientos.
+            </p>
+            <ul class="sv-list">
+              <li>Diseño orientado a conversión</li>
+              <li>Formularios de captura de leads</li>
+              <li>Integración con WhatsApp</li>
+              <li>Optimizadas para Google Ads / Meta Ads</li>
+              <li>Velocidad de carga ultrarrapida</li>
+              <li>Analíticas incluidas</li>
+            </ul>
+          </div>
+          <div class="servicio-card fade-in">
+            <div class="sv-icon"><svg class="icon"><use href="#i-refresh"/></svg></div>
+            <p class="sv-title">Rediseño Web</p>
+            <p class="sv-desc">
+              Tu sitio actual se ve desactualizado? Lo renovamos completamente
+              manteniendo tu contenido y mejorando la experiencia.
+            </p>
+            <ul class="sv-list">
+              <li>Análisis del sitio actual</li>
+              <li>Diseño moderno y fresco</li>
+              <li>Migración de contenido</li>
+              <li>Mejora de velocidad y SEO</li>
+              <li>Adaptación móvil completa</li>
+              <li>Pruebas antes del lanzamiento</li>
+            </ul>
+          </div>
+          <div class="servicio-card fade-in">
+            <div class="sv-icon"><svg class="icon"><use href="#i-chart"/></svg></div>
+            <p class="sv-title">Mantenimiento y Soporte</p>
+            <p class="sv-desc">
+              Tu sitio siempre actualizado, seguro y funcionando al 100%. Nos
+              encargamos de que nunca tengas problemas tecnicos.
+            </p>
+            <ul class="sv-list">
+              <li>Actualizaciones periódicas</li>
+              <li>Copias de seguridad automáticas</li>
+              <li>Monitoreo 24/7</li>
+              <li>Soporte por WhatsApp</li>
+              <li>Cambios de contenido incluidos</li>
+              <li>Informes mensuales</li>
+            </ul>
+          </div>
+          <!-- NUEVO: Marketing Digital -->
+          <div class="servicio-card fade-in" style="border-color: rgba(59,130,246,0.3); background: linear-gradient(135deg, var(--off) 0%, var(--light) 100%);">
+            <div class="sv-icon" style="background: linear-gradient(135deg, var(--blue), var(--sky)); color: #fff;">
+              <svg class="icon"><use href="#i-megaphone"/></svg>
+            </div>
+            <p class="sv-title">Marketing Digital</p>
+            <p class="sv-desc">
+              Estrategias de marketing digital para impulsar tu negocio.
+              Atraemos, convertimos y fidelizamos a tus clientes ideales.
+            </p>
+            <ul class="sv-list">
+              <li>Publicidad en Google Ads y Meta Ads</li>
+              <li>Gestión de redes sociales</li>
+              <li>Email marketing y automatización</li>
+              <li>Estrategia de contenidos</li>
+              <li>Análisis y reportes de rendimiento</li>
+              <li>Campañas de remarketing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIPOS DE PAGINAS -->
+    <section id="tipos">
+      <div class="container">
+        <div class="fade-in">
+          <span class="section-tag">Páginas web</span>
+          <h2 class="section-title">
+            ¿Qué tipo de página<br />necesitas <em>tú</em>?
+          </h2>
+          <p class="section-desc">
+            Desarrollamos todos los tipos de sitios web. Si no encuentras el
+            tuyo, ¡escríbenos y lo hacemos realidad!
+          </p>
+        </div>
+        <div class="tipos-grid">
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-building"/></svg></div>
+            <p class="tipo-title">Corporativa / Empresarial</p>
+            <p class="tipo-desc">Para empresas que quieren proyectar profesionalismo y confianza a sus clientes.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-bag"/></svg></div>
+            <p class="tipo-title">Tienda en linea</p>
+            <p class="tipo-desc">E-commerce completo para vender productos físicos o digitales 24/7.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-utensils"/></svg></div>
+            <p class="tipo-title">Restaurante / Menú</p>
+            <p class="tipo-desc">Menú digital, reservas en línea y pedidos para restaurantes y cafés.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-health"/></svg></div>
+            <p class="tipo-title">Salud / Clinicas</p>
+            <p class="tipo-desc">Agendamiento de citas, servicios medicos y ficha del especialista.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-landmark"/></svg></div>
+            <p class="tipo-title">Inmobiliaria</p>
+            <p class="tipo-desc">Catálogo de propiedades, búsqueda avanzada y captación de leads.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-graduation"/></svg></div>
+            <p class="tipo-title">Educativa / Cursos</p>
+            <p class="tipo-desc">Plataformas de e-learning, inscripciones y contenido educativo.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-briefcase"/></svg></div>
+            <p class="tipo-title">Portafolio / Personal</p>
+            <p class="tipo-desc">Muestra tu trabajo y habilidades con un sitio personal impactante.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-camera"/></svg></div>
+            <p class="tipo-title">Fotografía / Eventos</p>
+            <p class="tipo-desc">Galerías visuales impactantes para fotógrafos, DJ, bodas y eventos.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-scale"/></svg></div>
+            <p class="tipo-title">Legal / Jurídica</p>
+            <p class="tipo-desc">Sitio profesional para abogados, firmas y consultores legales.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-activity"/></svg></div>
+            <p class="tipo-title">Fitness / Deporte</p>
+            <p class="tipo-desc">Membresias, horarios de clases y reservas para gimnasios y entrenadores.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-plane"/></svg></div>
+            <p class="tipo-title">Turismo / Hoteles</p>
+            <p class="tipo-desc">Reservas, tours y experiencias para agencias de viaje y hoteles.</p>
+          </div>
+          <div class="tipo-card fade-in">
+            <div class="tipo-icon-wrap"><svg class="icon"><use href="#i-chat"/></svg></div>
+            <p class="tipo-title">¿Otro tipo?</p>
+            <p class="tipo-desc">Si no encuentras tu industria, contáctanos. Lo hacemos a la medida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADICIONALES -->
+    <section id="adicionales">
+      <div class="container">
+        <div class="fade-in">
+          <span class="section-tag">Adicionales</span>
+          <h2 class="section-title">Servicios <em>complementarios</em></h2>
+          <p class="section-desc">
+            Todo lo que necesitas para tener una presencia digital completa y
+            profesional.
+          </p>
+        </div>
+        <div class="adicionales-grid">
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-search"/></svg></div>
+            <div>
+              <p class="ad-title">SEO y Posicionamiento</p>
+              <p class="ad-desc">Optimizamos tu sitio para que aparezca en los primeros resultados de Google.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-mail"/></svg></div>
+            <div>
+              <p class="ad-title">Correos corporativos</p>
+              <p class="ad-desc">Cuentas profesionales con tu dominio: nombre@tuempresa.com</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-globe"/></svg></div>
+            <div>
+              <p class="ad-title">Dominio y Hosting</p>
+              <p class="ad-desc">Registro de dominio y alojamiento web rápido y confiable.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-smartphone"/></svg></div>
+            <div>
+              <p class="ad-title">Integración WhatsApp Business</p>
+              <p class="ad-desc">Botón de WhatsApp, respuestas automáticas y catálogo de productos.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-trending"/></svg></div>
+            <div>
+              <p class="ad-title">Google Analytics</p>
+              <p class="ad-desc">Seguimiento de visitas, comportamiento de usuarios y conversiones.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-palette"/></svg></div>
+            <div>
+              <p class="ad-title">Diseño de logo e identidad</p>
+              <p class="ad-desc">Creación de logo, paleta de colores y manual de marca para tu negocio.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-megaphone"/></svg></div>
+            <div>
+              <p class="ad-title">Gestión de redes sociales</p>
+              <p class="ad-desc">Creación de contenido y administración de Instagram, Facebook y TikTok.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-creditcard"/></svg></div>
+            <div>
+              <p class="ad-title">Pasarelas de pago</p>
+              <p class="ad-desc">Integración con PSE, Wompi, PayU, Mercado Pago y más.</p>
+            </div>
+          </div>
+          <div class="adicional-item fade-in">
+            <div class="ad-icon-wrap"><svg class="icon"><use href="#i-lock"/></svg></div>
+            <div>
+              <p class="ad-title">Seguridad SSL y Backups</p>
+              <p class="ad-desc">Certificado de seguridad y copias de respaldo automáticas de tu sitio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TARIFAS -->
+    <section id="tarifas">
+      <div class="container">
+        <div class="tarifas-header fade-in">
+          <span class="section-tag" style="background: rgba(59, 130, 246, 0.15); color: var(--sky)">Tarifas</span>
+          <h2 class="section-title" style="color: #fff">
+            Precios <em style="color: var(--sky)">transparentes</em><br />y competitivos
+          </h2>
+          <p class="section-desc" style="color: rgba(255, 255, 255, 0.5); margin: 0 auto">
+            Precios justos para el mercado colombiano. Sin sorpresas ni costos ocultos.
+          </p>
+          <div class="currency-toggle">
+            <button class="cur-btn active" id="btnCOP" onclick="setCurrency('COP')">COP</button>
+            <button class="cur-btn" id="btnUSD" onclick="setCurrency('USD')">USD</button>
+          </div>
+        </div>
+        <div class="tarifas-grid">
+          <!-- LANDING -->
+          <div class="tarifa-card fade-in">
+            <p class="t-category">Landing Page</p>
+            <p class="t-name">Página de Aterrizaje</p>
+            <div class="t-price">
+              <span class="currency" id="cur1">$</span><span class="amount" id="p1">600.000</span>
+            </div>
+            <p class="t-price-note" id="note1">Precio único &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Diseño personalizado 1 página</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Formulario de contacto / WhatsApp</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Optimizada para conversion</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Responsive (móvil + desktop)</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Certificado SSL</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Entrega en 5-7 días hábiles</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">Solicitar ahora</a>
+          </div>
+
+          <!-- PAGINA WEB -->
+          <div class="tarifa-card featured fade-in">
+            <div class="t-popular-badge">
+              <svg class="icon"><use href="#i-star"/></svg> MAS POPULAR
+            </div>
+            <p class="t-category">Página Web</p>
+            <p class="t-name">Sitio Profesional</p>
+            <div class="t-price">
+              <span class="currency" id="cur2">$</span><span class="amount" id="p2">1.500.000</span>
+            </div>
+            <p class="t-price-note" id="note2">Precio único &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Hasta 6 secciones / páginas</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Diseño 100% personalizado</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Panel de administración</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> SEO básico incluido</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Formulario de contacto</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Integración redes sociales</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Dominio + hosting primer año</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Entrega en 10-15 días hábiles</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">Solicitar ahora</a>
+          </div>
+
+          <!-- E-COMMERCE -->
+          <div class="tarifa-card fade-in">
+            <p class="t-category">E-commerce</p>
+            <p class="t-name">Tienda con Shopify</p>
+            <div class="t-price">
+              <span class="currency" id="cur3">$</span><span class="amount" id="p3">2.500.000</span>
+            </div>
+            <p class="t-price-note" id="note3">Precio único &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Tienda Shopify configurada</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Hasta 50 productos cargados</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Pasarela de pagos integrada</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Dominio personalizado</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Gestión de inventario</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Carrito de compras optimizado</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Capacitación de uso incluida</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Entrega en 15-20 días hábiles</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">Solicitar ahora</a>
+          </div>
+
+          <!-- APP WEB -->
+          <div class="tarifa-card fade-in">
+            <p class="t-category">Aplicación Web</p>
+            <p class="t-name">App a la medida</p>
+            <div class="t-price">
+              <span class="currency" id="cur4">$</span><span class="amount" id="p4">Desde 3.500.000</span>
+            </div>
+            <p class="t-price-note" id="note4">Según requerimientos &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Análisis de requerimientos</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Desarrollo frontend + backend</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Base de datos incluida</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Panel de administración</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Autenticación de usuarios</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> API REST incluida</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Documentación del sistema</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Soporte 3 meses post-lanzamiento</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">Solicitar cotizacion</a>
+          </div>
+
+          <!-- MANTENIMIENTO -->
+          <div class="tarifa-card fade-in">
+            <p class="t-category">Mensual</p>
+            <p class="t-name">Mantenimiento Web</p>
+            <div class="t-price">
+              <span class="currency" id="cur5">$</span><span class="amount" id="p5">250.000</span>
+            </div>
+            <p class="t-price-note" id="note5">Mensual &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Actualizaciones de seguridad</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Backup semanal automático</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Hasta 5 cambios de contenido</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Soporte por WhatsApp</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Monitoreo de disponibilidad</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Informe mensual de visitas</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">Solicitar ahora</a>
+          </div>
+
+          <!-- PAQUETE COMPLETO -->
+          <div class="tarifa-card fade-in">
+            <p class="t-category">Paquete Todo incluido</p>
+            <p class="t-name">Presencia Digital Total</p>
+            <div class="t-price">
+              <span class="currency" id="cur6">$</span><span class="amount" id="p6">3.200.000</span>
+            </div>
+            <p class="t-price-note" id="note6">Precio único &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Página web profesional completa</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Logo e identidad visual</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Correo corporativo x3</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Dominio + hosting 1 año</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Integración WhatsApp Business</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Google Analytics + SEO</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> 1 mes de mantenimiento gratis</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Capacitación de uso</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">¡Lo quiero todo!</a>
+          </div>
+
+          <!-- MARKETING DIGITAL (NUEVO) -->
+          <div class="tarifa-card fade-in" style="border-color: rgba(59,130,246,0.35); background: linear-gradient(135deg, rgba(26,86,219,0.15), rgba(96,165,250,0.08));">
+            <div class="t-popular-badge" style="background: rgba(96,165,250,0.3);">
+              <svg class="icon" style="width:10px;height:10px"><use href="#i-megaphone"/></svg> NUEVO
+            </div>
+            <p class="t-category">Marketing Digital</p>
+            <p class="t-name">Plan Crecimiento</p>
+            <div class="t-price">
+              <span class="currency" id="cur7">$</span><span class="amount" id="p7">800.000</span>
+            </div>
+            <p class="t-price-note" id="note7">Mensual &middot; COP</p>
+            <div class="t-divider"></div>
+            <ul class="t-features">
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Gestión de 2 redes sociales</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> 12 publicaciones mensuales</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Pauta publicitaria en Meta/Google</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Diseño de creatividades</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Reporte mensual de métricas</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Estrategia de contenido</li>
+              <li><svg class="icon-check"><use href="#i-check"/></svg> Soporte por WhatsApp</li>
+            </ul>
+            <a href="#contacto" class="btn-tarifa">Empezar a crecer</a>
+          </div>
+        </div>
+        <p class="tarifas-note">
+          <svg class="icon"><use href="#i-lightbulb"/></svg>
+          Todos los precios son negociables. Contáctanos para una cotización personalizada según tu presupuesto y necesidades.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="container">
+        <div class="fade-in">
+          <span class="section-tag">Contacto</span>
+          <h2 class="section-title">Cuéntanos tu <em>proyecto</em></h2>
+          <p class="section-desc">
+            Completa el formulario y te contactaremos en menos de 1 hora en
+            horario hábil.
+          </p>
+        </div>
+        <div class="contacto-grid">
+          <div class="contacto-info fade-in">
+            <div class="info-block">
+              <div class="ib-icon" style="background: #dcfce7; color: #16a34a">
+                <svg class="icon"><use href="#i-pin"/></svg>
+              </div>
+              <div>
+                <p class="ib-label">Ubicación</p>
+                <p class="ib-value" style="display:flex;align-items:center;gap:6px">
+                  Colombia <svg class="icon" style="width:18px;height:13px;stroke:none"><use href="#i-flag-co"/></svg>
+                </p>
+              </div>
+            </div>
+            <div class="info-block">
+              <div class="ib-icon" style="background: #dcfce7; color: #25d366">
+                <svg class="icon"><use href="#i-chat"/></svg>
+              </div>
+              <div>
+                <p class="ib-label">WhatsApp</p>
+                <p class="ib-value">
+                  <a href="https://wa.me/573215513399" target="_blank">+57 321 551 3399</a>
+                </p>
+              </div>
+            </div>
+            <div class="info-block">
+              <div class="ib-icon" style="background: #fce7f3; color: #e6683c">
+                <svg class="icon"><use href="#i-camera"/></svg>
+              </div>
+              <div>
+                <p class="ib-label">Instagram</p>
+                <p class="ib-value">
+                  <a href="https://www.instagram.com/jssoftware06?igsh=MTQ5dXJmN2x1YW1leQ==" target="_blank">@jssoftware06</a>
+                </p>
+              </div>
+            </div>
+            <div class="info-block">
+              <div class="ib-icon" style="background: #dbeafe; color: var(--blue)">
+                <svg class="icon"><use href="#i-mail"/></svg>
+              </div>
+              <div>
+                <p class="ib-label">Correo</p>
+                <p class="ib-value">
+                  <a href="mailto:contacto@jssoftware.com.co">contacto@jssoftware.com.co</a>
+                </p>
+              </div>
+            </div>
+            <div class="info-block">
+              <div class="ib-icon" style="background: #fef3c7; color: #d97706">
+                <svg class="icon"><use href="#i-clock"/></svg>
+              </div>
+              <div>
+                <p class="ib-label">Horario de atención</p>
+                <p class="ib-value" style="font-size: 13px; font-weight: 500">
+                  Lun-Vie: 8am-6pm &middot; Sáb: 9am-1pm
+                </p>
+              </div>
+            </div>
+
+            <p class="redes-title">Síguenos en redes</p>
+            <div class="redes-btns">
+              <a href="https://wa.me/573215513399" target="_blank" class="red-btn red-wa">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#i-whatsapp"/></svg>
+                WhatsApp
+              </a>
+              <a href="https://www.instagram.com/jssoftware06?igsh=MTQ5dXJmN2x1YW1leQ==" target="_blank" class="red-btn red-ig">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><use href="#i-instagram"/></svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+
+          <!-- FORM -->
+          <div class="form-card fade-in">
+            <p class="form-title-inner">
+              <svg class="icon"><use href="#i-clipboard"/></svg>
+              Formulario de requerimientos
+            </p>
+            <p class="form-sub-inner">
+              Cuéntanos qué necesitas y te respondemos con una cotización precisa.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <div class="fgrid">
+                <div class="ffield">
+                  <label>Nombre completo <span class="req">*</span></label>
+                  <input type="text" id="fn" placeholder="Tu nombre" />
+                </div>
+                <div class="ffield">
+                  <label>WhatsApp <span class="req">*</span></label>
+                  <input type="tel" id="fw" placeholder="+57 3215513399" />
+                </div>
+              </div>
+              <div class="fgrid">
+                <div class="ffield">
+                  <label>Empresa / Negocio</label>
+                  <input type="text" id="fe" placeholder="Nombre del negocio" />
+                </div>
+                <div class="ffield">
+                  <label>Correo electrónico</label>
+                  <input type="email" id="fm" placeholder="correo@ejemplo.com" />
+                </div>
+              </div>
+
+              <div class="ffield">
+                <label>Tipo de proyecto <span class="req">*</span></label>
+                <div class="check-row" id="ftipos">
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-cart"/></svg> E-commerce Shopify
+                  </div>
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-monitor"/></svg> Pagina web
+                  </div>
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-smartphone"/></svg> Aplicación web
+                  </div>
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-target"/></svg> Landing page
+                  </div>
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-refresh"/></svg> Rediseño
+                  </div>
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-megaphone"/></svg> Marketing Digital
+                  </div>
+                  <div class="fcheck" onclick="toggleFCheck(this)">
+                    <div class="fcheck-box"></div>
+                    <svg class="icon"><use href="#i-chat"/></svg> No sé aún
+                  </div>
+                </div>
+              </div>
+
+              <div class="ffield">
+                <label>¿De qué se trata tu negocio? <span class="req">*</span></label>
+                <textarea id="fd" placeholder="Cuéntanos sobre tu negocio o idea..."></textarea>
+              </div>
+
+              <div class="fgrid">
+                <div class="ffield">
+                  <label>Presupuesto estimado</label>
+                  <select id="fp">
+                    <option value="">Seleccionar...</option>
+                    <option>Menos de $500.000 COP</option>
+                    <option>$500.000 - $1.500.000 COP</option>
+                    <option>$1.500.000 - $3.000.000 COP</option>
+                    <option>$3.000.000 - $6.000.000 COP</option>
+                    <option>Mas de $6.000.000 COP</option>
+                    <option>Por definir</option>
+                  </select>
+                </div>
+                <div class="ffield">
+                  <label>¿Cuándo lo necesitas?</label>
+                  <select id="ft">
+                    <option value="">Seleccionar...</option>
+                    <option>Lo antes posible</option>
+                    <option>En 2-4 semanas</option>
+                    <option>En 1-2 meses</option>
+                    <option>Mas de 2 meses</option>
+                    <option>Flexible</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ffield">
+                <label>Información adicional</label>
+                <textarea id="fa" placeholder="Algo mas que debamos saber? Referencias, ideas, preguntas..."></textarea>
+              </div>
+
+              <button class="btn-form" onclick="enviarForm()">
+                <svg class="icon"><use href="#i-rocket"/></svg> Enviar requerimiento
+              </button>
+
+              <div class="form-success" id="formSuccess">
+                <svg class="icon"><use href="#i-check-circle"/></svg>
+                Recibimos tu mensaje! Te contactaremos en breve por WhatsApp.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="fb-logo">
+            <div class="fb-mark">JS</div>
+            <span class="fb-name">Software</span>
+          </div>
+          <p class="fb-desc">
+            Agencia digital colombiana especializada en desarrollo web,
+            e-commerce, marketing digital y aplicaciones. Tu aliado para crecer en el mundo
+            digital.
+          </p>
+        </div>
+        <div>
+          <p class="footer-col-title">Servicios</p>
+          <ul class="footer-links">
+            <li><a href="#servicios">E-commerce Shopify</a></li>
+            <li><a href="#servicios">Paginas web</a></li>
+            <li><a href="#servicios">Aplicaciones web</a></li>
+            <li><a href="#servicios">Landing pages</a></li>
+            <li><a href="#servicios">Marketing Digital</a></li>
+            <li><a href="#servicios">Mantenimiento</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Empresa</p>
+          <ul class="footer-links">
+            <li><a href="#nosotros">Quiénes somos</a></li>
+            <li><a href="#mision">Misión y visión</a></li>
+            <li><a href="#tipos">Tipos de paginas</a></li>
+            <li><a href="#adicionales">Adicionales</a></li>
+            <li><a href="#tarifas">Tarifas</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-col-title">Contactanos</p>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/573215513399" target="_blank">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/jssoftware06?igsh=MTQ5dXJmN2x1YW1leQ==" target="_blank">Instagram</a></li>
+            <li><a href="mailto:contacto@jssoftware.com.co">Email</a></li>
+            <li><a href="#contacto">Formulario</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2025 JS Software &middot; Agencia Digital Colombia
+          <svg class="icon"><use href="#i-flag-co"/></svg>
+          &middot; Todos los derechos reservados
+        </p>
+        <div class="footer-social">
+          <a href="https://wa.me/573215513399" class="f-social-btn" target="_blank" title="WhatsApp">
+            <svg class="icon"><use href="#i-whatsapp"/></svg>
+          </a>
+          <a href="https://www.instagram.com/jssoftware06?igsh=MTQ5dXJmN2x1YW1leQ==" class="f-social-btn" target="_blank" title="Instagram">
+            <svg class="icon"><use href="#i-instagram"/></svg>
+          </a>
+          <a href="mailto:contacto@jssoftware.com.co" class="f-social-btn" target="_blank" title="Email">
+            <svg class="icon" style="fill:none;stroke:currentColor"><use href="#i-mail"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="float-btns">
+      <a href="https://wa.me/573215513399" class="float-btn fwa" target="_blank" title="WhatsApp">
+        <svg class="icon"><use href="#i-whatsapp"/></svg>
+      </a>
+      <a href="https://www.instagram.com/jssoftware06?igsh=MTQ5dXJmN2x1YW1leQ==" class="float-btn fig" target="_blank" title="Instagram">
+        <svg class="icon"><use href="#i-instagram"/></svg>
+      </a>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+      /* NAV */
+      function toggleNav() {
+        document.getElementById("navLinks").classList.toggle("open");
+        document.getElementById("navToggle").classList.toggle("active");
+      }
+
+      document.querySelectorAll("#navLinks a").forEach((a) => {
+        a.addEventListener("click", () => {
+          document.getElementById("navLinks").classList.remove("open");
+          document.getElementById("navToggle").classList.remove("active");
+        });
+      });
+
+      /* CURRENCY TOGGLE */
+      const prices = {
+        COP: [
+          "600.000",
+          "1.500.000",
+          "2.500.000",
+          "Desde 3.500.000",
+          "250.000",
+          "3.200.000",
+          "800.000",
+        ],
+        USD: ["150", "375", "625", "Desde 875", "62", "800", "200"],
+        notesCOP: [
+          "Precio único \u00b7 COP",
+          "Precio único \u00b7 COP",
+          "Precio único \u00b7 COP",
+          "Según requerimientos \u00b7 COP",
+          "Mensual \u00b7 COP",
+          "Precio único \u00b7 COP",
+          "Mensual \u00b7 COP",
+        ],
+        notesUSD: [
+          "One-time \u00b7 USD",
+          "One-time \u00b7 USD",
+          "One-time \u00b7 USD",
+          "On request \u00b7 USD",
+          "Monthly \u00b7 USD",
+          "One-time \u00b7 USD",
+          "Monthly \u00b7 USD",
+        ],
+        symCOP: "$",
+        symUSD: "USD ",
+      };
+
+      function setCurrency(cur) {
+        const ps = cur === "COP" ? prices.COP : prices.USD;
+        const ns = cur === "COP" ? prices.notesCOP : prices.notesUSD;
+        const sym = cur === "COP" ? prices.symCOP : prices.symUSD;
+        for (let i = 1; i <= 7; i++) {
+          document.getElementById("p" + i).textContent = ps[i - 1];
+          document.getElementById("note" + i).textContent = ns[i - 1];
+          document.getElementById("cur" + i).textContent = sym;
+        }
+        document
+          .getElementById("btnCOP")
+          .classList.toggle("active", cur === "COP");
+        document
+          .getElementById("btnUSD")
+          .classList.toggle("active", cur === "USD");
+      }
+
+      /* FORM CHECKS */
+      function toggleFCheck(el) {
+        el.classList.toggle("sel");
+      }
+
+      /* FORM SUBMIT */
+      function enviarForm() {
+        const n = document.getElementById("fn").value.trim();
+        const w = document.getElementById("fw").value.trim();
+        const d = document.getElementById("fd").value.trim();
+        if (!n || !w || !d) {
+          alert(
+            "Por favor completa: nombre, WhatsApp y descripcion del negocio.",
+          );
+          return;
+        }
+
+        const tipos = [...document.querySelectorAll("#ftipos .fcheck.sel")].map(
+          (el) => el.textContent.trim(),
+        );
+
+        const msg = `NUEVO REQUERIMIENTO - JS Software
+
+Nombre: ${n}
+WhatsApp: ${w}
+Empresa: ${document.getElementById("fe").value || "N/A"}
+Correo: ${document.getElementById("fm").value || "N/A"}
+
+Proyecto: ${tipos.join(", ") || "No especificado"}
+Negocio: ${d}
+Presupuesto: ${document.getElementById("fp").value || "Por definir"}
+Plazo: ${document.getElementById("ft").value || "Por definir"}
+Adicional: ${document.getElementById("fa").value || "N/A"}`;
+
+        const waUrl = `https://wa.me/573215513399?text=${encodeURIComponent(msg)}`;
+        window.open(waUrl, "_blank");
+
+        document.getElementById("formSuccess").classList.add("show");
+
+        // Reset form for better UX
+        document.getElementById("fn").value = "";
+        document.getElementById("fw").value = "";
+        document.getElementById("fe").value = "";
+        document.getElementById("fm").value = "";
+        document.getElementById("fd").value = "";
+        document.getElementById("fa").value = "";
+        document.getElementById("fp").value = "";
+        document.getElementById("ft").value = "";
+        document.querySelectorAll("#ftipos .fcheck").forEach(el => el.classList.remove("sel"));
+      }
+
+      /* SCROLL ANIMATIONS */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+
+      /* NAV scroll style */
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector("nav");
+        if (window.scrollY > 40) {
+          nav.style.boxShadow = "0 4px 30px rgba(0,0,0,0.3)";
+        } else {
+          nav.style.boxShadow = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
